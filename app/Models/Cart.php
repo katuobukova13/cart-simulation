@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class Cart extends Model
 {
@@ -16,8 +15,6 @@ class Cart extends Model
         'price',
         'quantity'
     ];
-
-    private $sessionId;
 
     public static function get()
     {
@@ -34,7 +31,7 @@ class Cart extends Model
             'product_id' => $id])
             ->first()) {
             $cart->quantity++;
-            $cart->price=$product->price*$cart->quantity;
+            $cart->price = $product->price * $cart->quantity;
             $cart->save();
         } else {
             $cart = self::create([
