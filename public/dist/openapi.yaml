@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: CART SIMULATION API
+  version: 1.0.0
+paths:
+  /api/product:
+    post:
+      tags:
+        - Продукт
+      description: Создание продукта
+      parameters:
+        - name: name
+          in: query
+          description: название товара
+          required: true
+          schema:
+            type: string
+        - name: price
+          in: query
+          description: цена
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostProductResponse'
+
+  /api/cart:
+    get:
+      tags:
+        - Корзина
+      description: Получить список корзины
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCartResponse'
+    post:
+      tags:
+        - Корзина
+      description: Добавить продукт в корзину
+      parameters:
+        - name: id
+          in: query
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostCartResponse'
+components:
+  schemas:
+    PostCartResponse:
+      properties:
+        id:
+          type: number
+          example: 1
+        product_id:
+          type: number
+          example: 1
+        quantity:
+          type: number
+          example: 1
+        price:
+          type: number
+          example: '1000'
+        session_id:
+          type: string
+          example: dggf86yyeLJHh98376
+        product_name:
+          type: string
+          example: котик
+        created_at:
+          type: string
+          example: "2022-06-08T21:15:25.000000Z"
+        updated_at:
+          type: string
+          example: "2022-06-08T21:15:25.000000Z"
+      type: object
+    GetCartResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+            example: 1
+          product_id:
+            type: number
+            example: 1
+          quantity:
+            type: number
+            example: 1
+          price:
+            type: number
+            example: '1000'
+          session_id:
+            type: string
+            example: dggf86yyeLJHh98376
+          product_name:
+            type: string
+            example: котик
+          created_at:
+            type: string
+            example: "2022-06-08T21:15:25.000000Z"
+          updated_at:
+            type: string
+            example: "2022-06-08T21:15:25.000000Z"
+    PostProductResponse:
+      properties:
+        name:
+          type: string
+          example: котик
+        price:
+          type: number
+          example: '5990'
+        created_at:
+          type: string
+          example: "2022-06-08T21:15:25.000000Z"
+        updated_at:
+          type: string
+          example: "2022-06-08T21:15:25.000000Z"
+        id:
+          type: integer
+          example: 1669
+      type: object

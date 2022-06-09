@@ -198,6 +198,6 @@ return [
 
     'same_site' => 'lax',
 
-    'id' => env('SESSION_ID'),
+    'id' => env('SESSION_ID', 'hdGhdb6894hUgLDkg20teSt'),
 
 ];
