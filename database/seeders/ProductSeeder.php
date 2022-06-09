@@ -22,5 +22,9 @@ class ProductSeeder extends Seeder
             'name' => 'Клатч',
             'price' => 100,
         ]);
+        Product::create([
+            'name' => 'Телефон',
+            'price' => 80000,
+        ]);
     }
 }
