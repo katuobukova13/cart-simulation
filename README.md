@@ -15,5 +15,5 @@
 - php artisan migrate
 - php artisan db:seed --class=ProductSeeder
 
-##Swagger
+## Swagger
 http://{domain}/dist/index.html
