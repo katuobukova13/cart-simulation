@@ -14,7 +14,7 @@ class CartController extends Controller
 
     public static function store(Request $request)
     {
-        $cart = Cart::add($request->id);
+        $cart = Cart::add($request->id, $request->quantity ?? 1);
 
         return $cart;
     }

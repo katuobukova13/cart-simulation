@@ -48,7 +48,14 @@ paths:
       parameters:
         - name: id
           in: query
+          description: id товара
           required: true
+        - name: quantity
+          in: query
+          description: количество товара
+          required: true
+          schema:
+             type: integer
       responses:
         '200':
           description: successful operation
