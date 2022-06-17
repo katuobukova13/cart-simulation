@@ -9,11 +9,11 @@
 - Laravel 
 
 ## Run Project
-- composer install
-- развернуть бд локально c переносом переменных в .env из .env.example
-- php artisan serve
-- php artisan migrate
-- php artisan db:seed --class=ProductSeeder
+- cp .env.example .env
+- docker run --rm -v ${PWD}:/app -w /app --user $(id -u):$(id -g) composer:2.2.7 install --ignore-platform-reqs
+- docker-compose up -d
+- docker-compose exec app php artisan migrate
+- docker-compose exec app php artisan db:seed --class=ProductSeeder
 
 ## Swagger
-http://{domain}/dist/index.html
+http://localhost:8080/api/documentation/
