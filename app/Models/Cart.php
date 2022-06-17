@@ -22,7 +22,7 @@ class Cart extends Model
             config('session.id')])->get();
     }
 
-    public static function add($id)
+    public static function add($id, $quantity)
     {
         $product = Product::findOrFail($id);
 
@@ -30,19 +30,17 @@ class Cart extends Model
             'session_id' => config('session.id'),
             'product_id' => $id])
             ->first()) {
-            $cart->quantity++;
+            $cart->quantity += $quantity;
             $cart->price = $product->price * $cart->quantity;
             $cart->save();
         } else {
             $cart = self::create([
                 'session_id' => config('session.id'),
                 'product_id' => $product->id,
-                'product_name' => $product->name,
+                'quantity' => $quantity,
                 'price' => $product->price,
             ]);
         }
-
-        $cart['product_name'] = $product->name;
 
         return $cart;
     }
